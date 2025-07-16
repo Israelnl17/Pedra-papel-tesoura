@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedra, Papel ou Tesoura</title>
+</head>
+<body>
+  <script>
+    function obterEscolhaUsuario() {
+      let escolha;
+      do {
+        escolha = prompt("Escolha: Pedra, Papel ou Tesoura? (ou 'sair' para encerrar)").toLowerCase();
+      } while (!["pedra", "papel", "tesoura", "sair"].includes(escolha));
+      return escolha;
+    }
+    function gerarEscolhaComputador() {
+      const opcoes = ["pedra", "papel", "tesoura"];
+      const indice = Math.floor(Math.random() * 3); // 0, 1 ou 2
+      return opcoes[indice];
+    }
+  function determinarVencedor(usuario, computador) {
+      if (usuario === computador) {
+        return "Empate!";
+      } else if (
+        (usuario === "pedra" && computador === "tesoura") ||
+        (usuario === "papel" && computador === "pedra") ||
+        (usuario === "tesoura" && computador === "papel")
+      ) {
+        return "Você venceu!";
+      } else {
+        return "O computador venceu!";
+      }
+    }
+    function jogar() {
+      alert("Bem-vindo ao jogo Pedra, Papel ou Tesoura!");
+
+      while (true) {
+        const escolhaUsuario = obterEscolhaUsuario();
+
+        if (escolhaUsuario === "sair") {
+          alert("Obrigado por jogar!");
+          break;
+        }
+
+        const escolhaComputador = gerarEscolhaComputador();
+
+        alert(`Você escolheu: ${escolhaUsuario}\nComputador escolheu: ${escolhaComputador}`);
+
+        const resultado = determinarVencedor(escolhaUsuario, escolhaComputador);
+        alert(resultado);
+      }
+    }
+    jogar();
+  </script>
+</body>
+</html>
